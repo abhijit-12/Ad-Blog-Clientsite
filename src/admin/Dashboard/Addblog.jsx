@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Addblog = () => {
   const [title, setTitle] = useState("");
@@ -10,12 +10,12 @@ const Addblog = () => {
   const [token, setToken] = useState(null);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
+    const storedToken = localStorage.getItem("token");
     if (storedToken) {
-      console.log('Token retrieved from local storage:', storedToken);
+      console.log("Token retrieved from local storage:", storedToken);
       setToken(storedToken);
     } else {
-      console.error('No token found in local storage');
+      console.error("No token found in local storage");
     }
   }, []);
 
@@ -23,7 +23,7 @@ const Addblog = () => {
     e.preventDefault();
 
     if (!token) {
-      console.error('No token available, unable to submit post');
+      console.error("No token available, unable to submit post");
       return;
     }
 
@@ -36,14 +36,18 @@ const Addblog = () => {
     };
 
     try {
-      const response = await axios.post('https://backend-ad-s-blog-app-1.onrender.com/api/posts/addposts', postData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post(
+        "https://backend-ad-s-blog-app-1.onrender.com/api/posts/addposts",
+        postData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-      console.log('Post created successfully:', response.data);
-      alert('Blog post created successfully');
+      console.log("Post created successfully:", response.data);
+      alert("Blog post created successfully");
 
       // Clear form fields after submission
       setTitle("");
@@ -52,7 +56,7 @@ const Addblog = () => {
       setCoverImg("");
       setCategory("");
     } catch (error) {
-      console.error('Error creating post:', error);
+      console.error("Error creating post:", error);
     }
   };
 
@@ -61,7 +65,10 @@ const Addblog = () => {
       <h2 className="text-2xl font-bold mb-4">Create a Blog Post</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor="title"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             Blog Title
           </label>
           <input
@@ -74,7 +81,10 @@ const Addblog = () => {
           />
         </div>
         <div>
-          <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor="content"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             Content
           </label>
           <textarea
@@ -87,7 +97,10 @@ const Addblog = () => {
           />
         </div>
         <div>
-          <label htmlFor="author" className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor="author"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             Author
           </label>
           <input
@@ -100,7 +113,10 @@ const Addblog = () => {
           />
         </div>
         <div>
-          <label htmlFor="coverImg" className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor="coverImg"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             Cover Image URL
           </label>
           <input
@@ -112,7 +128,10 @@ const Addblog = () => {
           />
         </div>
         <div>
-          <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor="category"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             Category
           </label>
           <input
