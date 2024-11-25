@@ -3,29 +3,36 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Register = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("https://backend-ad-s-blog-app-1.onrender.com/api/user/reg", {
-        username,
-        email,
-        password
-      });
+      const response = await axios.post(
+        "https://backend-ad-s-blog-app-1.onrender.com/api/user/reg",
+        {
+          username,
+          email,
+          password,
+        }
+      );
       setSuccess("Registration successful!");
-      setUsername('');
-      setEmail('');
-      setPassword('');
-      setError('');
+      setUsername("");
+      setEmail("");
+      setPassword("");
+      setError("");
     } catch (err) {
-      setError("Registration failed. Please try again.");
-      setSuccess('');
+      if (err.response && err.response.status === 409) {
+        setError("Email already registered.");
+      } else {
+        setError("Registration failed. Please try again.");
+      }
+      setSuccess("");
       console.error(err);
     }
   };
@@ -33,7 +40,10 @@ const Register = () => {
   return (
     <div>
       <section className="bg-gray-50 dark:bg-gray-900">
-        <form className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0" onSubmit={handleSubmit}>
+        <form
+          className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+          onSubmit={handleSubmit}
+        >
           <a
             href="/"
             className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"

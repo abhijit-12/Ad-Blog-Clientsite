@@ -19,8 +19,13 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      await logoutUser().unwrap();
+      const Logout = await logoutUser().unwrap();
       dispatch(logout());
+      if (!Logout) {
+        window.alert("Failed to logout");
+      } else {
+        window.alert("Logout sucessfully");
+      }
     } catch (error) {
       console.error("Logout failed", error);
     }
@@ -101,7 +106,10 @@ const Navbar = () => {
               )
             ) : (
               <li>
-                <Link to="/login" className="text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
+                <Link
+                  to="/login"
+                  className="text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+                >
                   Login
                 </Link>
               </li>

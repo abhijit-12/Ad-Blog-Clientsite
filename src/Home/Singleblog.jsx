@@ -45,13 +45,18 @@ const Singleblog = () => {
           )}
           <div className="p-5">
             <h1 className="text-3xl font-bold mb-4">{post.blog.title}</h1>
-            <p className="text-gray-600 mb-6">Published At {new Date(post.blog.createdAt).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              })}</p>
+            <p className="text-gray-600 mb-6">
+              Published At{" "}
+              {new Date(post.blog.createdAt).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
             <p className="text-gray-600 mb-6 text-lg">By {post.blog.author}</p>
-            <div className="text-gray-800 leading-relaxed">{post.blog.content}</div>
+            <div className="text-gray-800 leading-relaxed">
+              {post.blog.content}
+            </div>
           </div>
         </div>
       ) : (
